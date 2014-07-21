@@ -7,8 +7,10 @@
 //
 
 #import "MasterViewController.h"
-
+#import "BlogData.h"
 #import "DetailViewController.h"
+#import "LBTableViewCell.h"
+#import "TwitterRequester.h"
 
 @interface MasterViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -41,11 +43,13 @@
 {
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
+    BlogData *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
     
     // If appropriate, configure the new managed object.
     // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
+    NSDate *now = [NSDate new];
+    [newManagedObject setDateCreated:now];
+    [newManagedObject setDateModified:now];
     
     // Save the context.
     NSError *error = nil;
@@ -109,9 +113,83 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        BlogData *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
     }
+}
+
+#pragma mark - UITableViewCell
+
+- (void)socialNetwork:(NSString *)serviceType message:(NSString *)msg {
+    SLComposeViewController *composeViewController = [SLComposeViewController composeViewControllerForServiceType:serviceType];
+    [composeViewController setInitialText:msg];
+    [self presentViewController:composeViewController animated:YES completion:nil];
+}
+
+- (IBAction)tappedTwitterButton:(id)sender {
+//    UITableViewCell *buttonCell = (UITableViewCell *)((UIButton *)sender).superview.superview;
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:buttonCell];
+
+    NSIndexPath *indexPath = [self indexPathOfSender:sender];
+    
+    BlogData *bd = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *msg = @"...";
+    
+    if (bd.textBody) {
+        if (bd.latitude && bd.longitude) {
+            msg = [NSString stringWithFormat:@"Location Bloging at lat:%@ lon: %@, about %@", bd.latitude, bd.longitude, bd.textBody];
+        } else {
+            msg = [NSString stringWithFormat:@"Location Bloging about %@", bd.textBody];
+        }
+    }
+    //[self socialNetwork:SLServiceTypeTwitter message:msg];
+    
+//    [[TwitterRequester instance] postForUser:@"derrickho328"
+//                                  coordinate:CLLocationCoordinate2DMake(bd.latitude.doubleValue, bd.longitude.doubleValue)
+//                                    tweetMsg:msg dateModified:bd.dateModified];
+
+    [[TwitterRequester instance] testPost];
+}
+
+- (IBAction)tappedFacebookButton:(id)sender {
+//    UITableViewCell *buttonCell = (UITableViewCell *)((UIButton *)sender).superview.superview;
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:buttonCell];
+    
+    NSIndexPath *indexPath = [self indexPathOfSender:sender];
+    
+    BlogData *bd = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *msg = @"...";
+    
+    if (bd.textBody) {
+        if (bd.latitude && bd.longitude) {
+            msg = [NSString stringWithFormat:@"Location Bloging at lat:%@ lon: %@, about %@", bd.latitude, bd.longitude, bd.textBody];
+        } else {
+            msg = [NSString stringWithFormat:@"Location Bloging about %@", bd.textBody];
+        }
+    }
+    [self socialNetwork:SLServiceTypeFacebook message:msg];
+    
+    //    [[[UIAlertView alloc] initWithTitle:@"Pressed Facebook Button" message:nil delegate:nil cancelButtonTitle:@"cancel" otherButtonTitles:nil] show];
+}
+
+- (NSIndexPath *)indexPathOfSender:(UIButton *)sender {
+    UIView *parentCell = sender.superview;
+    
+    while (![parentCell isKindOfClass:[UITableViewCell class]]) {   // iOS 7 onwards the table cell hierachy has changed.
+        parentCell = parentCell.superview;
+    }
+    
+    UIView *parentView = parentCell.superview;
+    
+    while (![parentView isKindOfClass:[UITableView class]]) {   // iOS 7 onwards the table cell hierachy has changed.
+        parentView = parentView.superview;
+    }
+    
+    
+    UITableView *tableView = (UITableView *)parentView;
+    NSIndexPath *indexPath = [tableView indexPathForCell:(UITableViewCell *)parentCell];
+
+    return indexPath;
 }
 
 #pragma mark - Fetched results controller
@@ -124,14 +202,14 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"BlogData" inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeStamp" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"dateCreated" ascending:NO];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
@@ -213,10 +291,11 @@
 }
  */
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(LBTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"timeStamp"] description];
+    BlogData *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.header.text = [object header];
+    cell.dateModified.text = [[object dateModified] description];
 }
 
 @end

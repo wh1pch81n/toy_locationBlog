@@ -25,6 +25,14 @@
 		7FB28DCF197C87890021523F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB28DAA197C87880021523F /* CoreData.framework */; };
 		7FB28DD7197C87890021523F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FB28DD5197C87890021523F /* InfoPlist.strings */; };
 		7FB28DD9197C87890021523F /* LocationBlogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB28DD8197C87890021523F /* LocationBlogTests.m */; };
+		7FB28DE6197C8A480021523F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB28DE5197C8A480021523F /* CoreLocation.framework */; };
+		7FB28DE8197C8ABF0021523F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB28DE7197C8ABF0021523F /* MapKit.framework */; };
+		7FB28DEB197C8AF90021523F /* BlogData+MKAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB28DEA197C8AF90021523F /* BlogData+MKAnnotation.m */; };
+		7FB28DEE197C9EDA0021523F /* BlogData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB28DED197C9EDA0021523F /* BlogData.m */; };
+		7FB28DF1197CA0720021523F /* LBTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB28DF0197CA0720021523F /* LBTableViewCell.m */; };
+		7FB28DF3197CA1C90021523F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB28DF2197CA1C90021523F /* Social.framework */; };
+		7FB28DF6197CBC1A0021523F /* TwitterRequester.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FB28DF5197CBC1A0021523F /* TwitterRequester.m */; };
+		7FB28DF8197CBD0F0021523F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB28DF7197CBD0F0021523F /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +69,19 @@
 		7FB28DD4197C87890021523F /* LocationBlogTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LocationBlogTests-Info.plist"; sourceTree = "<group>"; };
 		7FB28DD6197C87890021523F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7FB28DD8197C87890021523F /* LocationBlogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationBlogTests.m; sourceTree = "<group>"; };
+		7FB28DE5197C8A480021523F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7FB28DE7197C8ABF0021523F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7FB28DE9197C8AF90021523F /* BlogData+MKAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BlogData+MKAnnotation.h"; sourceTree = "<group>"; };
+		7FB28DEA197C8AF90021523F /* BlogData+MKAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BlogData+MKAnnotation.m"; sourceTree = "<group>"; };
+		7FB28DEC197C9EDA0021523F /* BlogData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlogData.h; sourceTree = "<group>"; };
+		7FB28DED197C9EDA0021523F /* BlogData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlogData.m; sourceTree = "<group>"; };
+		7FB28DEF197CA0720021523F /* LBTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBTableViewCell.h; sourceTree = "<group>"; };
+		7FB28DF0197CA0720021523F /* LBTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBTableViewCell.m; sourceTree = "<group>"; };
+		7FB28DF2197CA1C90021523F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		7FB28DF4197CBC1A0021523F /* TwitterRequester.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterRequester.h; sourceTree = "<group>"; };
+		7FB28DF5197CBC1A0021523F /* TwitterRequester.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterRequester.m; sourceTree = "<group>"; };
+		7FB28DF7197CBD0F0021523F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		7FB28DF9197CD7170021523F /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +89,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FB28DF8197CBD0F0021523F /* Accounts.framework in Frameworks */,
+				7FB28DF3197CA1C90021523F /* Social.framework in Frameworks */,
+				7FB28DE8197C8ABF0021523F /* MapKit.framework in Frameworks */,
+				7FB28DE6197C8A480021523F /* CoreLocation.framework in Frameworks */,
 				7FB28DA7197C87880021523F /* CoreGraphics.framework in Frameworks */,
 				7FB28DAB197C87880021523F /* CoreData.framework in Frameworks */,
 				7FB28DA9197C87880021523F /* UIKit.framework in Frameworks */,
@@ -111,6 +136,11 @@
 		7FB28DA3197C87880021523F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7FB28DF9197CD7170021523F /* Twitter.framework */,
+				7FB28DF7197CBD0F0021523F /* Accounts.framework */,
+				7FB28DF2197CA1C90021523F /* Social.framework */,
+				7FB28DE7197C8ABF0021523F /* MapKit.framework */,
+				7FB28DE5197C8A480021523F /* CoreLocation.framework */,
 				7FB28DA4197C87880021523F /* Foundation.framework */,
 				7FB28DA6197C87880021523F /* CoreGraphics.framework */,
 				7FB28DA8197C87880021523F /* UIKit.framework */,
@@ -128,10 +158,18 @@
 				7FB28DB8197C87880021523F /* Main.storyboard */,
 				7FB28DBE197C87880021523F /* MasterViewController.h */,
 				7FB28DBF197C87880021523F /* MasterViewController.m */,
+				7FB28DF4197CBC1A0021523F /* TwitterRequester.h */,
+				7FB28DF5197CBC1A0021523F /* TwitterRequester.m */,
 				7FB28DC1197C87880021523F /* DetailViewController.h */,
 				7FB28DC2197C87880021523F /* DetailViewController.m */,
 				7FB28DC4197C87880021523F /* Images.xcassets */,
+				7FB28DEF197CA0720021523F /* LBTableViewCell.h */,
+				7FB28DF0197CA0720021523F /* LBTableViewCell.m */,
+				7FB28DEC197C9EDA0021523F /* BlogData.h */,
+				7FB28DED197C9EDA0021523F /* BlogData.m */,
 				7FB28DBB197C87880021523F /* LocationBlog.xcdatamodeld */,
+				7FB28DE9197C8AF90021523F /* BlogData+MKAnnotation.h */,
+				7FB28DEA197C8AF90021523F /* BlogData+MKAnnotation.m */,
 				7FB28DAD197C87880021523F /* Supporting Files */,
 			);
 			path = LocationBlog;
@@ -264,8 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FB28DC3197C87880021523F /* DetailViewController.m in Sources */,
+				7FB28DF6197CBC1A0021523F /* TwitterRequester.m in Sources */,
 				7FB28DC0197C87880021523F /* MasterViewController.m in Sources */,
 				7FB28DB7197C87880021523F /* AppDelegate.m in Sources */,
+				7FB28DEB197C8AF90021523F /* BlogData+MKAnnotation.m in Sources */,
+				7FB28DEE197C9EDA0021523F /* BlogData.m in Sources */,
+				7FB28DF1197CA0720021523F /* LBTableViewCell.m in Sources */,
 				7FB28DB3197C87880021523F /* main.m in Sources */,
 				7FB28DBD197C87880021523F /* LocationBlog.xcdatamodeld in Sources */,
 			);
@@ -472,6 +514,7 @@
 				7FB28DDE197C87890021523F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7FB28DDF197C87890021523F /* Build configuration list for PBXNativeTarget "LocationBlogTests" */ = {
 			isa = XCConfigurationList;
@@ -480,6 +523,7 @@
 				7FB28DE1197C87890021523F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

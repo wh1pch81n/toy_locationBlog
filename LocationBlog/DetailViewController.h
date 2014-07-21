@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
-@interface DetailViewController : UIViewController
+@class BlogData;
+@interface DetailViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, UITextViewDelegate, UITextFieldDelegate>
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) BlogData *detailItem;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end
